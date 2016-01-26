@@ -3,13 +3,11 @@ define([
         '../ThirdParty/Uri',
         './defined',
         './DeveloperError',
-        './getAbsoluteUri',
         'require'
     ], function(
         Uri,
         defined,
         DeveloperError,
-        getAbsoluteUri,
         require) {
     "use strict";
     /*global CESIUM_BASE_URL*/
@@ -44,7 +42,7 @@ define([
             throw new DeveloperError('Unable to determine Cesium base URL automatically, try defining a global variable called CESIUM_BASE_URL.');
         }
 
-        baseUrl = new Uri(getAbsoluteUri(baseUrlString));
+        baseUrl = new Uri(baseUrlString).resolve(new Uri(document.location.href));
 
         return baseUrl;
     }

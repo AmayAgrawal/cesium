@@ -18,7 +18,8 @@ define([
      * The data comes from the Report of the IAU/IAG Working Group on Cartographic
      * Coordinates and Rotational Elements: 2000.
      *
-     * @exports Iau2000Orientation
+     * @namespace
+     * @alias Iau2000Orientation
      *
      * @private
      */

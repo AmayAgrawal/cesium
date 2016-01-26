@@ -18,6 +18,7 @@ define([
      * @param {String} queryString The query string.
      * @returns {Object} An object containing the parameters parsed from the query string.
      *
+     * @see objectToQuery
      *
      * @example
      * var obj = Cesium.queryToObject('key1=some%20value&key2=a%2Fb&key3=x&key3=y');
@@ -27,8 +28,6 @@ define([
      * //   key2 : 'a/b',
      * //   key3 : ['x', 'y']
      * // }
-     * 
-     * @see objectToQuery
      */
     function queryToObject(queryString) {
         //>>includeStart('debug', pragmas.debug);

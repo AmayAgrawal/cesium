@@ -10,7 +10,8 @@ define(function() {
      * except that they are expressed in radians.
      * </p>
      *
-     * @exports IauOrientationParameters
+     * @namespace
+     * @alias IauOrientationParameters
      *
      * @private
      */

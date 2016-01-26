@@ -18,6 +18,7 @@ define([
      * @param {Object} obj The object containing data to encode.
      * @returns {String} An encoded query string.
      *
+     * @see queryToObject
      *
      * @example
      * var str = Cesium.objectToQuery({
@@ -25,8 +26,6 @@ define([
      *     key2 : 'a/b',
      *     key3 : ['x', 'y']
      * });
-     * 
-     * @see queryToObject
      * // str will be:
      * // 'key1=some%20value&key2=a%2Fb&key3=x&key3=y'
      */

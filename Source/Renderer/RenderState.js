@@ -313,6 +313,8 @@ define([
      * @exception {DeveloperError} renderState.viewport.height must be greater than or equal to zero.
      * @exception {DeveloperError} renderState.viewport.height must be less than or equal to the maximum viewport height.
      *
+     * @see DrawCommand
+     * @see ClearCommand
      *
      * @example
      * var defaults = {
@@ -393,9 +395,6 @@ define([
      *
      * var rs = RenderState.fromCache(defaults);
      *
-     * @see DrawCommand
-     * @see ClearCommand
-     * 
      * @private
      */
     RenderState.fromCache = function(renderState) {

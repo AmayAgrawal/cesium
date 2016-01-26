@@ -123,6 +123,14 @@ define([
      *        that this can be dynamically overridden by modifying the {@link UriTemplateImageryProvider#enablePickFeatures}
      *        property.
      *
+     * @see ArcGisMapServerImageryProvider
+     * @see BingMapsImageryProvider
+     * @see GoogleEarthImageryProvider
+     * @see createOpenStreetMapImageryProvider
+     * @see SingleTileImageryProvider
+     * @see TileMapServiceImageryProvider
+     * @see WebMapServiceImageryProvider
+     * @see WebMapTileServiceImageryProvider
      *
      * @example
      * // Access Natural Earth II imagery, which uses a TMS tiling scheme and Geographic (EPSG:4326) project
@@ -147,15 +155,6 @@ define([
      *          'width=256&height=256',
      *    rectangle : Cesium.Rectangle.fromDegrees(96.799393, -43.598214999057824, 153.63925700000001, -9.2159219997013)
      * });
-     * 
-     * @see ArcGisMapServerImageryProvider
-     * @see BingMapsImageryProvider
-     * @see GoogleEarthImageryProvider
-     * @see createOpenStreetMapImageryProvider
-     * @see SingleTileImageryProvider
-     * @see TileMapServiceImageryProvider
-     * @see WebMapServiceImageryProvider
-     * @see WebMapTileServiceImageryProvider
      */
     function UrlTemplateImageryProvider(options) {
         //>>includeStart('debug', pragmas.debug);

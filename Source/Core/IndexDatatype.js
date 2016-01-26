@@ -17,7 +17,8 @@ define([
      * Constants for WebGL index datatypes.  These corresponds to the
      * <code>type</code> parameter of {@link http://www.khronos.org/opengles/sdk/docs/man/xhtml/glDrawElements.xml|drawElements}.
      *
-     * @exports IndexDatatype
+     * @namespace
+     * @alias IndexDatatype
      */
     var IndexDatatype = {
         /**

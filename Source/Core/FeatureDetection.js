@@ -156,33 +156,12 @@ define([
         return hasPointerEvents;
     }
 
-    var imageRenderingValueResult;
-    var supportsImageRenderingPixelatedResult;
-    function supportsImageRenderingPixelated() {
-        if (!defined(supportsImageRenderingPixelatedResult)) {
-            var canvas = document.createElement('canvas');
-            canvas.setAttribute('style',
-                                'image-rendering: -moz-crisp-edges;' +
-                                'image-rendering: pixelated;');
-            //canvas.style.imageRendering will be undefined, null or an empty string on unsupported browsers.
-            var tmp = canvas.style.imageRendering;
-            supportsImageRenderingPixelatedResult = defined(tmp) && tmp !== '';
-            if (supportsImageRenderingPixelatedResult) {
-                imageRenderingValueResult = tmp;
-            }
-        }
-        return supportsImageRenderingPixelatedResult;
-    }
-
-    function imageRenderingValue() {
-        return supportsImageRenderingPixelated() ? imageRenderingValueResult : undefined;
-    }
-
     /**
      * A set of functions to detect whether the current browser supports
      * various features.
      *
-     * @exports FeatureDetection
+     * @namespace
+     * @alias FeatureDetection
      */
     var FeatureDetection = {
         isChrome : isChrome,
@@ -197,9 +176,7 @@ define([
         firefoxVersion : firefoxVersion,
         isWindows : isWindows,
         hardwareConcurrency : defaultValue(theNavigator.hardwareConcurrency, 3),
-        supportsPointerEvents : supportsPointerEvents,
-        supportsImageRenderingPixelated: supportsImageRenderingPixelated,
-        imageRenderingValue: imageRenderingValue
+        supportsPointerEvents : supportsPointerEvents
     };
 
     /**

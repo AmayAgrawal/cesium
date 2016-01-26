@@ -8,7 +8,8 @@ define([
     /**
      * An {@link InterpolationAlgorithm} for performing Lagrange interpolation.
      *
-     * @exports LagrangePolynomialApproximation
+     * @namespace
+     * @alias LagrangePolynomialApproximation
      */
     var LagrangePolynomialApproximation = {
         type : 'Lagrange'

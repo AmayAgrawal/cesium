@@ -25,7 +25,8 @@ define([
      * WebGL component datatypes.  Components are intrinsics,
      * which form attributes, which form vertices.
      *
-     * @exports ComponentDatatype
+     * @namespace
+     * @alias ComponentDatatype
      */
     var ComponentDatatype = {
         /**

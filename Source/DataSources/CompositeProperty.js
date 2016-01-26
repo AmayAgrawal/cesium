@@ -40,6 +40,8 @@ define([
      * @alias CompositeProperty
      * @constructor
      *
+     * @see CompositeMaterialProperty
+     * @see CompositePositionProperty
      *
      * @example
      * var constantProperty = ...;
@@ -60,9 +62,6 @@ define([
      *     isStopIncluded : false,
      *     data : sampledProperty
      * }));
-     * 
-     * @see CompositeMaterialProperty
-     * @see CompositePositionProperty
      */
     function CompositeProperty() {
         this._eventHelper = new EventHelper();

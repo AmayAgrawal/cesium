@@ -38,7 +38,8 @@ define([
     /**
      * Contains functions to create a mesh from a heightmap image.
      *
-     * @exports HeightmapTessellator
+     * @namespace
+     * @alias HeightmapTessellator
      *
      * @private
      */

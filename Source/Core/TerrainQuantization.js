@@ -8,7 +8,8 @@ define([
     /**
      * This enumerated type is used to determine how the vertices of the terrain mesh are compressed.
      *
-     * @exports TerrainQuantization
+     * @namespace
+     * @alias TerrainQuantization
      *
      * @private
      */

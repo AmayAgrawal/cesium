@@ -10,7 +10,6 @@ define([
         '../../Core/destroyObject',
         '../../Core/DeveloperError',
         '../../Core/Ellipsoid',
-        '../../Core/FeatureDetection',
         '../../Core/formatError',
         '../../Core/requestAnimationFrame',
         '../../Core/ScreenSpaceEventHandler',
@@ -34,7 +33,6 @@ define([
         destroyObject,
         DeveloperError,
         Ellipsoid,
-        FeatureDetection,
         formatError,
         requestAnimationFrame,
         ScreenSpaceEventHandler,
@@ -100,16 +98,13 @@ define([
         var canvas = widget._canvas;
         var width = canvas.clientWidth;
         var height = canvas.clientHeight;
-        var resolutionScale = widget._resolutionScale;
-        if (!widget._supportsImageRenderingPixelated) {
-            resolutionScale *= defaultValue(window.devicePixelRatio, 1.0);
-        }
+        var zoomFactor = defaultValue(window.devicePixelRatio, 1.0) * widget._resolutionScale;
 
         widget._canvasWidth = width;
         widget._canvasHeight = height;
 
-        width *= resolutionScale;
-        height *= resolutionScale;
+        width *= zoomFactor;
+        height *= zoomFactor;
 
         canvas.width = width;
         canvas.height = height;
@@ -210,12 +205,6 @@ define([
         container.appendChild(element);
 
         var canvas = document.createElement('canvas');
-        var supportsImageRenderingPixelated = FeatureDetection.supportsImageRenderingPixelated();
-        this._supportsImageRenderingPixelated = supportsImageRenderingPixelated;
-        if (supportsImageRenderingPixelated) {
-            canvas.style.imageRendering = FeatureDetection.imageRenderingValue();
-        }
-
         canvas.oncontextmenu = function() {
             return false;
         };
@@ -475,8 +464,8 @@ define([
         /**
          * Gets or sets the target frame rate of the widget when <code>useDefaultRenderLoop</code>
          * is true. If undefined, the browser's {@link requestAnimationFrame} implementation
-         * determines the frame rate.  If defined, this value must be greater than 0.  A value higher
-         * than the underlying requestAnimationFrame implementation will have no effect.
+         * determines the frame rate.  This value must be greater than 0 and a value higher than
+         * the underlying requestAnimationFrame implementatin will have no affect.
          * @memberof CesiumWidget.prototype
          *
          * @type {Number}
@@ -487,7 +476,7 @@ define([
             },
             set : function(value) {
                 if (value <= 0) {
-                    throw new DeveloperError('targetFrameRate must be greater than 0, or undefined.');
+                    throw new DeveloperError('targetFrameRate must be greater than 0.');
                 }
                 this._targetFrameRate = value;
             }

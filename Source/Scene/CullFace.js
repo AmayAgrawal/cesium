@@ -10,7 +10,8 @@ define([
     /**
      * Determines which triangles, if any, are culled.
      *
-     * @exports CullFace
+     * @namespace
+     * @alias CullFace
      */
     var CullFace = {
         /**

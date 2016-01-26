@@ -45,6 +45,9 @@ define([
      *
      * @exception {DeveloperError} Element with id "container" does not exist in the document.
      *
+     * @see TerrainProvider
+     * @see ImageryProvider
+     * @see ImageryLayerCollection
      *
      * @example
      * // In HTML head, include a link to the BaseLayerPicker.css stylesheet,
@@ -100,10 +103,6 @@ define([
      *     globe : cesiumWidget.scene.globe,
      *     imageryProviderViewModels : imageryViewModels
      * });
-     * 
-     * @see TerrainProvider
-     * @see ImageryProvider
-     * @see ImageryLayerCollection
      */
     function BaseLayerPicker(container, options) {
         //>>includeStart('debug', pragmas.debug);

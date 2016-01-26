@@ -95,13 +95,12 @@ defineSuite([
 
              var tilingScheme = new GeographicTilingScheme();
 
-             return when(data.createMesh(tilingScheme, 0, 0, 0, 1)).then(function() {
-                 var swPromise = data.upsample(tilingScheme, 0, 0, 0, 0, 0, 1);
-                 var sePromise = data.upsample(tilingScheme, 0, 0, 0, 1, 0, 1);
-                 var nwPromise = data.upsample(tilingScheme, 0, 0, 0, 0, 1, 1);
-                 var nePromise = data.upsample(tilingScheme, 0, 0, 0, 1, 1, 1);
-                 return when.join(swPromise, sePromise, nwPromise, nePromise);
-             }).then(function(upsampleResults) {
+             var swPromise = data.upsample(tilingScheme, 0, 0, 0, 0, 0, 1);
+             var sePromise = data.upsample(tilingScheme, 0, 0, 0, 1, 0, 1);
+             var nwPromise = data.upsample(tilingScheme, 0, 0, 0, 0, 1, 1);
+             var nePromise = data.upsample(tilingScheme, 0, 0, 0, 1, 1, 1);
+
+             return when.all([swPromise, sePromise, nwPromise, nePromise], function(upsampleResults) {
                  expect(upsampleResults.length).toBe(4);
 
                  for (var i = 0; i < upsampleResults.length; ++i) {
@@ -174,13 +173,12 @@ defineSuite([
 
              var tilingScheme = new GeographicTilingScheme();
 
-             return when(data.createMesh(tilingScheme, 0, 0, 0, 1)).then(function() {
-                 var swPromise = data.upsample(tilingScheme, 0, 0, 0, 0, 0, 1);
-                 var sePromise = data.upsample(tilingScheme, 0, 0, 0, 1, 0, 1);
-                 var nwPromise = data.upsample(tilingScheme, 0, 0, 0, 0, 1, 1);
-                 var nePromise = data.upsample(tilingScheme, 0, 0, 0, 1, 1, 1);
-                 return when.join(swPromise, sePromise, nwPromise, nePromise);
-             }).then(function(upsampleResults) {
+             var swPromise = data.upsample(tilingScheme, 0, 0, 0, 0, 0, 1);
+             var sePromise = data.upsample(tilingScheme, 0, 0, 0, 1, 0, 1);
+             var nwPromise = data.upsample(tilingScheme, 0, 0, 0, 0, 1, 1);
+             var nePromise = data.upsample(tilingScheme, 0, 0, 0, 1, 1, 1);
+
+             return when.all([swPromise, sePromise, nwPromise, nePromise], function(upsampleResults) {
                  expect(upsampleResults.length).toBe(4);
 
                  for (var i = 0; i < upsampleResults.length; ++i) {
@@ -231,9 +229,7 @@ defineSuite([
              });
 
              var tilingScheme = new GeographicTilingScheme();
-             return when(data.createMesh(tilingScheme, 0, 0, 0, 1)).then(function() {
-                 return data.upsample(tilingScheme, 0, 0, 0, 0, 0, 1);
-             }).then(function(upsampled) {
+             return data.upsample(tilingScheme, 0, 0, 0, 0, 0, 1).then(function(upsampled) {
                  var uBuffer = upsampled._uValues;
                  var vBuffer = upsampled._vValues;
                  var ib = upsampled._indices;
@@ -305,11 +301,10 @@ defineSuite([
              });
 
              var tilingScheme = new GeographicTilingScheme();
-             return when(data.createMesh(tilingScheme, 0, 0, 0, 1)).then(function() {
-                 var nwPromise = data.upsample(tilingScheme, 0, 0, 0, 0, 0, 1);
-                 var nePromise = data.upsample(tilingScheme, 0, 0, 0, 1, 0, 1);
-                 return when.join(nwPromise, nePromise);
-             }).then(function(upsampleResults){
+             var nwPromise = data.upsample(tilingScheme, 0, 0, 0, 0, 0, 1);
+             var nePromise = data.upsample(tilingScheme, 0, 0, 0, 1, 0, 1);
+
+             return when.all([nwPromise, nePromise], function(upsampleResults) {
                  expect(upsampleResults.length).toBe(2);
                  var uBuffer, vBuffer;
                  for (var i = 0; i < upsampleResults.length; i++) {

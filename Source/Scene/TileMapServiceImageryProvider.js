@@ -71,6 +71,9 @@ define([
      * @see WebMapTileServiceImageryProvider
      * @see UrlTemplateImageryProvider
      *
+     * @see {@link http://www.maptiler.org/|MapTiler}
+     * @see {@link http://www.klokan.cz/projects/gdal2tiles/|GDDAL2Tiles}
+     * @see {@link http://www.w3.org/TR/cors/|Cross-Origin Resource Sharing}
      *
      * @example
      * // TileMapService tile provider
@@ -84,10 +87,6 @@ define([
      *        Cesium.Math.toRadians(-60.0),
      *        Cesium.Math.toRadians(40.0))
      * });
-     * 
-     * @see {@link http://www.maptiler.org/|MapTiler}
-     * @see {@link http://www.klokan.cz/projects/gdal2tiles/|GDDAL2Tiles}
-     * @see {@link http://www.w3.org/TR/cors/|Cross-Origin Resource Sharing}
      */
     function TileMapServiceImageryProvider(options) {
         options = defaultValue(options, {});

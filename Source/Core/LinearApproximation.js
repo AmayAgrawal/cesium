@@ -10,7 +10,8 @@ define([
     /**
      * An {@link InterpolationAlgorithm} for performing linear interpolation.
      *
-     * @exports LinearApproximation
+     * @namespace
+     * @alias LinearApproximation
      */
     var LinearApproximation = {
         type : 'Linear'

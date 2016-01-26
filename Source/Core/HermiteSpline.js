@@ -145,6 +145,9 @@ define([
      * @exception {DeveloperError} times.length must be equal to points.length.
      * @exception {DeveloperError} inTangents and outTangents must have a length equal to points.length - 1.
      *
+     * @see CatmullRomSpline
+     * @see LinearSpline
+     * @see QuaternionSpline
      *
      * @example
      * // Create a G<sup>1</sup> continuous Hermite spline
@@ -173,10 +176,6 @@ define([
      * });
      *
      * var p0 = spline.evaluate(times[0]);
-     * 
-     * @see CatmullRomSpline
-     * @see LinearSpline
-     * @see QuaternionSpline
      */
     function HermiteSpline(options) {
         options = defaultValue(options, defaultValue.EMPTY_OBJECT);

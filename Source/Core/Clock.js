@@ -37,6 +37,9 @@ define([
      *
      * @exception {DeveloperError} startTime must come before stopTime.
      *
+     * @see ClockStep
+     * @see ClockRange
+     * @see JulianDate
      *
      * @example
      * // Create a clock that loops on Christmas day 2013 and runs in real-time.
@@ -47,10 +50,6 @@ define([
      *    clockRange : Cesium.ClockRange.LOOP_STOP,
      *    clockStep : Cesium.ClockStep.SYSTEM_CLOCK_MULTIPLIER
      * });
-     * 
-     * @see ClockStep
-     * @see ClockRange
-     * @see JulianDate
      */
     function Clock(options) {
         options = defaultValue(options, defaultValue.EMPTY_OBJECT);

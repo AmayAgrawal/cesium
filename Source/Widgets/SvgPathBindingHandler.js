@@ -20,7 +20,8 @@ define(function() {
      * <li>css: Optional. A string containing additional CSS classes to apply to the SVG. 'cesium-svgPath-svg' is always applied.</li>
      * </ul>
      *
-     * @exports SvgPathBindingHandler
+     * @namespace
+     * @alias SvgPathBindingHandler
      *
      * @example
      * // Create an SVG as a child of a div

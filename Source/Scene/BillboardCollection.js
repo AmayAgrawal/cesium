@@ -217,6 +217,7 @@ define([
          * @type {Matrix4}
          * @default {@link Matrix4.IDENTITY}
          *
+         * @see Transforms.eastNorthUpToFixedFrame
          *
          * @example
          * var center = Cesium.Cartesian3.fromDegrees(-75.59777, 40.03883);
@@ -237,8 +238,6 @@ define([
          *   image : 'url/to/image',
          *   position : new Cesium.Cartesian3(0.0, 0.0, 1000000.0) // up
          * });
-         * 
-         * @see Transforms.eastNorthUpToFixedFrame
          */
         this.modelMatrix = Matrix4.clone(defaultValue(options.modelMatrix, Matrix4.IDENTITY));
         this._modelMatrix = Matrix4.clone(Matrix4.IDENTITY);
@@ -373,6 +372,8 @@ define([
      *
      * @exception {DeveloperError} This object was destroyed, i.e., destroy() was called.
      *
+     * @see BillboardCollection#remove
+     * @see BillboardCollection#removeAll
      *
      * @example
      * // Example 1:  Add a billboard, specifying all the default values.
@@ -394,9 +395,6 @@ define([
      * var b = billboards.add({
      *   position : Cesium.Cartesian3.fromDegrees(longitude, latitude, height)
      * });
-     * 
-     * @see BillboardCollection#remove
-     * @see BillboardCollection#removeAll
      */
     BillboardCollection.prototype.add = function(billboard) {
         var b = new Billboard(billboard, this);
@@ -422,14 +420,13 @@ define([
      *
      * @exception {DeveloperError} This object was destroyed, i.e., destroy() was called.
      *
+     * @see BillboardCollection#add
+     * @see BillboardCollection#removeAll
+     * @see Billboard#show
      *
      * @example
      * var b = billboards.add(...);
      * billboards.remove(b);  // Returns true
-     * 
-     * @see BillboardCollection#add
-     * @see BillboardCollection#removeAll
-     * @see Billboard#show
      */
     BillboardCollection.prototype.remove = function(billboard) {
         if (this.contains(billboard)) {
@@ -451,14 +448,13 @@ define([
      *
      * @exception {DeveloperError} This object was destroyed, i.e., destroy() was called.
      *
+     * @see BillboardCollection#add
+     * @see BillboardCollection#remove
      *
      * @example
      * billboards.add(...);
      * billboards.add(...);
      * billboards.removeAll();
-     * 
-     * @see BillboardCollection#add
-     * @see BillboardCollection#remove
      */
     BillboardCollection.prototype.removeAll = function() {
         destroyBillboards(this._billboards);
@@ -525,6 +521,7 @@ define([
      *
      * @exception {DeveloperError} This object was destroyed, i.e., destroy() was called.
      *
+     * @see BillboardCollection#length
      *
      * @example
      * // Toggle the show property of every billboard in the collection
@@ -533,8 +530,6 @@ define([
      *   var b = billboards.get(i);
      *   b.show = !b.show;
      * }
-     * 
-     * @see BillboardCollection#length
      */
     BillboardCollection.prototype.get = function(index) {
         //>>includeStart('debug', pragmas.debug);
@@ -1553,11 +1548,10 @@ define([
      *
      * @exception {DeveloperError} This object was destroyed, i.e., destroy() was called.
      *
+     * @see BillboardCollection#isDestroyed
      *
      * @example
      * billboards = billboards && billboards.destroy();
-     * 
-     * @see BillboardCollection#isDestroyed
      */
     BillboardCollection.prototype.destroy = function() {
         this._textureAtlas = this._destroyTextureAtlas && this._textureAtlas && this._textureAtlas.destroy();

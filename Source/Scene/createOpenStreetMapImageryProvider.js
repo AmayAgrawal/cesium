@@ -1,18 +1,19 @@
 /*global define*/
 define([
-        '../Core/Credit',
-        '../Core/defaultValue',
-        '../Core/DeveloperError',
-        '../Core/Rectangle',
-        '../Core/WebMercatorTilingScheme',
-        './UrlTemplateImageryProvider'
-    ], function(
-        Credit,
-        defaultValue,
-        DeveloperError,
-        Rectangle,
-        WebMercatorTilingScheme,
-        UrlTemplateImageryProvider) {
+    '../Core/Credit',
+    '../Core/defaultValue',
+    '../Core/DeveloperError',
+    '../Core/Rectangle',
+    '../Core/WebMercatorTilingScheme',
+    './UrlTemplateImageryProvider'
+], function(
+    Credit,
+    defaultValue,
+    DeveloperError,
+    Rectangle,
+    WebMercatorTilingScheme,
+    UrlTemplateImageryProvider
+) {
     "use strict";
 
     var trailingSlashRegex = /\/$/;
@@ -47,14 +48,13 @@ define([
      * @see WebMapTileServiceImageryProvider
      * @see UrlTemplateImageryProvider
      *
+     * @see {@link http://wiki.openstreetmap.org/wiki/Main_Page|OpenStreetMap Wiki}
+     * @see {@link http://www.w3.org/TR/cors/|Cross-Origin Resource Sharing}
      *
      * @example
      * var osm = Cesium.createOpenStreetMapImageryProvider({
      *     url : '//a.tile.openstreetmap.org/'
      * });
-     * 
-     * @see {@link http://wiki.openstreetmap.org/wiki/Main_Page|OpenStreetMap Wiki}
-     * @see {@link http://www.w3.org/TR/cors/|Cross-Origin Resource Sharing}
      */
     function createOpenStreetMapImageryProvider(options) {
         options = defaultValue(options, {});

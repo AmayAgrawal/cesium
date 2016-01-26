@@ -4,8 +4,8 @@ define([
         '../../Scene/ArcGisMapServerImageryProvider',
         '../../Scene/BingMapsImageryProvider',
         '../../Scene/BingMapsStyle',
-        '../../Scene/createOpenStreetMapImageryProvider',
         '../../Scene/MapboxImageryProvider',
+        '../../Scene/createOpenStreetMapImageryProvider',
         '../../Scene/TileMapServiceImageryProvider',
         '../BaseLayerPicker/ProviderViewModel'
     ], function(
@@ -13,8 +13,8 @@ define([
         ArcGisMapServerImageryProvider,
         BingMapsImageryProvider,
         BingMapsStyle,
-        createOpenStreetMapImageryProvider,
         MapboxImageryProvider,
+        createOpenStreetMapImageryProvider,
         TileMapServiceImageryProvider,
         ProviderViewModel) {
     "use strict";

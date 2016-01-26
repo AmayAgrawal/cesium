@@ -214,17 +214,11 @@ defineSuite([
 
             return pollToPromise(function() {
                 GlobeSurfaceTile.processStateMachine(rootTile, frameState, realTerrainProvider, imageryLayerCollection);
-                return rootTile.data.loadedTerrain.state >= TerrainState.RECEIVED;
-            }).then(function() {
-                return pollToPromise(function() {
-                    GlobeSurfaceTile.processStateMachine(childTile, frameState, alwaysDeferTerrainProvider, imageryLayerCollection);
-                    return childTile.data.upsampledTerrain.state >= TerrainState.RECEIVED;
-                });
-            }).then(function() {
-                return pollToPromise(function() {
-                    GlobeSurfaceTile.processStateMachine(grandchildTile, frameState, alwaysDeferTerrainProvider, imageryLayerCollection);
-                    return grandchildTile.data.upsampledTerrain.state >= TerrainState.RECEIVED;
-                });
+                GlobeSurfaceTile.processStateMachine(childTile, frameState, alwaysDeferTerrainProvider, imageryLayerCollection);
+                GlobeSurfaceTile.processStateMachine(grandchildTile, frameState, alwaysDeferTerrainProvider, imageryLayerCollection);
+                return rootTile.data.loadedTerrain.state >= TerrainState.RECEIVED &&
+                       childTile.data.upsampledTerrain.state >= TerrainState.RECEIVED &&
+                       grandchildTile.data.upsampledTerrain.state >= TerrainState.RECEIVED;
             }).then(function() {
                 var grandchildUpsampledTerrain = grandchildTile.data.upsampledTerrain;
                 expect(grandchildTile.data.loadedTerrain).toBeUndefined();
@@ -246,32 +240,21 @@ defineSuite([
 
             return pollToPromise(function() {
                 GlobeSurfaceTile.processStateMachine(rootTile, frameState, realTerrainProvider, imageryLayerCollection);
-                return rootTile.data.loadedTerrain.state >= TerrainState.RECEIVED;
-            }).then(function() {
-                return pollToPromise(function() {
-                    GlobeSurfaceTile.processStateMachine(childTile, frameState, alwaysDeferTerrainProvider, imageryLayerCollection);
-                    return childTile.data.upsampledTerrain.state >= TerrainState.RECEIVED;
-                });
-            }).then(function() {
-                return pollToPromise(function() {
-                    GlobeSurfaceTile.processStateMachine(grandchildTile, frameState, alwaysDeferTerrainProvider, imageryLayerCollection);
-                    return grandchildTile.data.upsampledTerrain.state >= TerrainState.RECEIVED;
-                });
-            }).then(function() {
-                return pollToPromise(function() {
-                    GlobeSurfaceTile.processStateMachine(greatGrandchildTile, frameState, alwaysDeferTerrainProvider, imageryLayerCollection);
-                    return greatGrandchildTile.data.upsampledTerrain.state >= TerrainState.RECEIVED;
-                });
-            }).then(function() {
-               return pollToPromise(function() {
-                   GlobeSurfaceTile.processStateMachine(childTile, frameState, realTerrainProvider, imageryLayerCollection);
-                   return childTile.data.loadedTerrain.state >= TerrainState.RECEIVED;
-               });
+                GlobeSurfaceTile.processStateMachine(childTile, frameState, alwaysDeferTerrainProvider, imageryLayerCollection);
+                GlobeSurfaceTile.processStateMachine(grandchildTile, frameState, alwaysDeferTerrainProvider, imageryLayerCollection);
+                GlobeSurfaceTile.processStateMachine(greatGrandchildTile, frameState, alwaysDeferTerrainProvider, imageryLayerCollection);
+                return rootTile.data.loadedTerrain.state >= TerrainState.RECEIVED &&
+                       childTile.data.upsampledTerrain.state >= TerrainState.RECEIVED &&
+                       grandchildTile.data.upsampledTerrain.state >= TerrainState.RECEIVED &&
+                       greatGrandchildTile.data.upsampledTerrain.state >= TerrainState.RECEIVED;
             }).then(function() {
                 var greatGrandchildUpsampledTerrain = grandchildTile.data.upsampledTerrain;
+
                 return pollToPromise(function() {
+                    GlobeSurfaceTile.processStateMachine(childTile, frameState, realTerrainProvider, imageryLayerCollection);
                     GlobeSurfaceTile.processStateMachine(grandchildTile, frameState, alwaysDeferTerrainProvider, imageryLayerCollection);
-                    return grandchildTile.data.upsampledTerrain.state >= TerrainState.RECEIVED;
+                    return childTile.data.loadedTerrain.state >= TerrainState.RECEIVED &&
+                           grandchildTile.data.upsampledTerrain.state >= TerrainState.RECEIVED;
                 }).then(function() {
                     expect(greatGrandchildTile.data.upsampledTerrain).toBeDefined();
                     expect(greatGrandchildTile.data.upsampledTerrain).not.toBe(greatGrandchildUpsampledTerrain);
@@ -322,8 +305,8 @@ defineSuite([
             return pollToPromise(function() {
                 GlobeSurfaceTile.processStateMachine(rootTile, frameState, realTerrainProvider, imageryLayerCollection);
                 GlobeSurfaceTile.processStateMachine(childTile, frameState, alwaysDeferTerrainProvider, imageryLayerCollection);
-                return defined(rootTile.data.terrainData) && defined(rootTile.data.terrainData._mesh) &&
-                       defined(childTile.data.terrainData);
+                return rootTile.data.loadedTerrain.state >= TerrainState.RECEIVED &&
+                       childTile.data.upsampledTerrain.state >= TerrainState.RECEIVED;
             }).then(function() {
                 // Mark the grandchild as present even though the child is upsampled.
                 childTile.data.terrainData._childTileMask = 15;
@@ -356,9 +339,9 @@ defineSuite([
                 GlobeSurfaceTile.processStateMachine(rootTile, frameState, realTerrainProvider, imageryLayerCollection);
                 GlobeSurfaceTile.processStateMachine(childTile, frameState, alwaysDeferTerrainProvider, imageryLayerCollection);
                 GlobeSurfaceTile.processStateMachine(grandchildTile, frameState, alwaysDeferTerrainProvider, imageryLayerCollection);
-                return defined(rootTile.data.terrainData) && defined(rootTile.data.terrainData._mesh) &&
-                       defined(childTile.data.terrainData) && defined(childTile.data.terrainData._mesh) &&
-                       defined(grandchildTile.data.terrainData);
+                return rootTile.data.loadedTerrain.state >= TerrainState.RECEIVED &&
+                       childTile.data.upsampledTerrain.state >= TerrainState.RECEIVED &&
+                       grandchildTile.data.upsampledTerrain.state >= TerrainState.RECEIVED;
             }).then(function() {
                 // Mark the great-grandchild as present even though the grandchild is upsampled.
                 grandchildTile.data.terrainData._childTileMask = 15;

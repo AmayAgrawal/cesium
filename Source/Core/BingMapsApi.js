@@ -8,7 +8,8 @@ define([
     /**
      * Object for setting and retrieving the default BingMaps API key.
      *
-     * @exports BingMapsApi
+     * @namespace
+     * @alias BingMapsApi
      */
     var BingMapsApi = {
     };

@@ -190,8 +190,7 @@ define([
             boundingSphere : boundingSphere,
             orientedBoundingBox : orientedBoundingBox,
             occludeePointInScaledSpace : occludeePointInScaledSpace,
-            encoding : encoding,
-            skirtIndex : parameters.indices.length
+            encoding : encoding
         };
     }
 

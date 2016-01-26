@@ -130,6 +130,7 @@ define([
      * @param {Number|Packable} type The type of property.
      * @param {Packable[]} [derivativeTypes] When supplied, indicates that samples will contain derivative information of the specified types.
      *
+     * @see SampledPositionProperty
      *
      * @example
      * //Create a linearly interpolated Cartesian2
@@ -162,8 +163,6 @@ define([
      *
      * //Retrieve an interpolated value
      * var result = property.getValue(Cesium.JulianDate.fromIso8601(`2012-08-01T00:02:34.00Z`));
-     * 
-     * @see SampledPositionProperty
      */
     function SampledProperty(type, derivativeTypes) {
         //>>includeStart('debug', pragmas.debug);

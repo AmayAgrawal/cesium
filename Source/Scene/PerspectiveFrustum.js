@@ -20,6 +20,7 @@ define([
      * @alias PerspectiveFrustum
      * @constructor
      *
+     * @see PerspectiveOffCenterFrustum
      *
      * @example
      * var frustum = new Cesium.PerspectiveFrustum();
@@ -27,8 +28,6 @@ define([
      * frustum.fov = Cesium.Math.PI_OVER_THREE;
      * frustum.near = 1.0;
      * frustum.far = 2.0;
-     * 
-     * @see PerspectiveOffCenterFrustum
      */
     function PerspectiveFrustum() {
         this._offCenterFrustum = new PerspectiveOffCenterFrustum();
@@ -69,22 +68,6 @@ define([
          */
         this.far = 500000000.0;
         this._far = this.far;
-
-        /**
-         * Offsets the frustum in the x direction.
-         * @type {Number}
-         * @default 0.0
-         */
-        this.xOffset = 0.0;
-        this._xOffset = this.xOffset;
-
-        /**
-         * Offsets the frustum in the y direction.
-         * @type {Number}
-         * @default 0.0
-         */
-        this.yOffset = 0.0;
-        this._yOffset = this.yOffset;
     }
 
     function update(frustum) {
@@ -97,8 +80,7 @@ define([
         var f = frustum._offCenterFrustum;
 
         if (frustum.fov !== frustum._fov || frustum.aspectRatio !== frustum._aspectRatio ||
-                frustum.near !== frustum._near || frustum.far !== frustum._far ||
-                frustum.xOffset !== frustum._xOffset || frustum.yOffset !== frustum._yOffset) {
+                frustum.near !== frustum._near || frustum.far !== frustum._far) {
             //>>includeStart('debug', pragmas.debug);
             if (frustum.fov < 0 || frustum.fov >= Math.PI) {
                 throw new DeveloperError('fov must be in the range [0, PI).');
@@ -119,8 +101,6 @@ define([
             frustum._near = frustum.near;
             frustum._far = frustum.far;
             frustum._sseDenominator = 2.0 * Math.tan(0.5 * frustum._fovy);
-            frustum._xOffset = frustum.xOffset;
-            frustum._yOffset = frustum.yOffset;
 
             f.top = frustum.near * Math.tan(0.5 * frustum._fovy);
             f.bottom = -f.top;
@@ -128,11 +108,6 @@ define([
             f.left = -f.right;
             f.near = frustum.near;
             f.far = frustum.far;
-
-            f.right += frustum.xOffset;
-            f.left += frustum.xOffset;
-            f.top += frustum.yOffset;
-            f.bottom += frustum.yOffset;
         }
     }
 

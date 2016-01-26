@@ -10,7 +10,8 @@ define([
     /**
      * The type of a geometric primitive, i.e., points, lines, and triangles.
      *
-     * @exports PrimitiveType
+     * @namespace
+     * @alias PrimitiveType
      */
     var PrimitiveType = {
         /**
